@@ -18,9 +18,11 @@
     --accent:#c43a18;     /* 赤橙アクセント(対白5.30:1) */
   }
   *{margin:0;padding:0;box-sizing:border-box;}
-  body{background:#e9edf2;display:flex;justify-content:center;}
+  body{background:#e9edf2;display:flex;justify-content:center;margin:0;}
+  .stage{width:min(1080px,100vw);overflow:hidden;}
   .poster{
-    width:750px;max-width:100vw;
+    width:1080px;
+    transform-origin:top left;
     background:var(--paper);
     color:var(--navy);
     font-family:'Zen Kaku Gothic New',sans-serif;
@@ -105,7 +107,7 @@
   }
   .diff .issue{
     margin-top:12px;
-    font-size:12.5px;line-height:1.6;
+    font-size:19px;line-height:1.6;
     font-weight:700;color:var(--navy);
     padding:10px 14px;
     background:#faf1ee;
@@ -114,10 +116,6 @@
     white-space:nowrap;overflow:hidden;
   }
   .diff .issue strong{color:var(--accent);}
-
-  @media (max-width:749px){
-    .diff .issue{white-space:normal;}
-  }
 
   /* ---------- 流量の数字 ---------- */
   .volume{
@@ -251,7 +249,7 @@
 </style>
 </head>
 <body>
-<div class="poster">
+<div class="stage"><div class="poster">
 
   <!-- HERO -->
   <div class="hero">
@@ -394,6 +392,23 @@
     <div class="cta-line"><img src="line-icon.png" alt="LINE" onerror="this.outerHTML='<svg viewBox=&quot;0 0 24 24&quot; style=&quot;width:40px;height:40px;fill:#fff;flex:none&quot;><path d=&quot;M12 3C6.5 3 2 6.6 2 11c0 2.6 1.6 4.9 4 6.4-.1.8-.5 2.2-.6 2.6-.1.5.2.5.5.4.3-.1 2.4-1.4 3.3-2 .9.2 1.8.3 2.8.3 5.5 0 10-3.6 10-8S17.5 3 12 3z&quot;/></svg>'">LINEにてDMをお願いします</div>
   </div>
 
-</div>
+</div></div>
+<script>
+(function(){
+  var BASE=1080;
+  var stage=document.querySelector('.stage');
+  var poster=document.querySelector('.poster');
+  function fit(){
+    var w=Math.min(window.innerWidth,BASE);
+    var scale=w/BASE;
+    poster.style.transform='scale('+scale+')';
+    // scaleは見た目だけ縮むためレイアウト高さを実寸に合わせて補正する
+    stage.style.height=(poster.offsetHeight*scale)+'px';
+  }
+  window.addEventListener('resize',fit);
+  window.addEventListener('load',fit);
+  fit();
+})();
+</script>
 </body>
 </html>
