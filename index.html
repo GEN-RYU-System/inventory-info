@@ -246,6 +246,56 @@
   }
   .cta .cta-line svg{width:40px;height:40px;fill:#fff;flex:none;}
   .cta .cta-line img{width:40px;height:40px;flex:none;}
+
+  /* ===== モバイル層(768px未満): 縮小ではなく組み替え ===== */
+  @media (max-width:767px){
+    .stage{width:100vw;}
+    .poster{width:100%;}
+    .hero{padding:36px 20px 28px;}
+    .hero h1{font-size:34px;}
+    .hero p.sub{font-size:15px;margin-top:14px;}
+    .chaos{padding:28px 20px 8px;}
+    .concl{font-size:24px;}
+    .diff .dnum{font-size:30px;}
+    .diff .dtitle{font-size:16px;}
+    .diff .chips{flex-direction:column;gap:8px;}
+    .diff .chip{
+      display:flex;align-items:center;gap:12px;
+      text-align:left;padding:10px 14px;font-size:14px;
+    }
+    .diff .chip .person{
+      flex-direction:row;margin-bottom:0;gap:8px;
+      font-size:13px;flex:none;width:86px;
+    }
+    .diff .chip .person svg{width:34px;height:34px;}
+    .diff .chip small{display:inline;margin-left:6px;}
+    .diff .issue{white-space:normal;font-size:14px;line-height:1.7;}
+    .volume{margin:24px 20px;padding:20px 0;}
+    .volume .v .big{font-size:44px;}
+    .volume .v .big small{font-size:18px;}
+    .volume .v .cap{font-size:12px;}
+    .volume-issue{margin:0 20px 8px;font-size:14px;}
+    .solve{padding:32px 20px 28px;}
+    .solve p.lead{font-size:14px;}
+    .sheet table{font-size:12px;}
+    .sheet th,.sheet td{padding:7px 8px;}
+    .sheet td.n{font-size:14px;}
+    .gains{padding:8px 20px 32px;gap:10px;}
+    .gain{padding:14px 16px;gap:14px;}
+    .gain .mark{width:54px;height:54px;font-size:26px;border-radius:8px;}
+    .gain .stat .before{font-size:20px;}
+    .gain .stat .after{font-size:32px;}
+    .gain .stat .garrow{font-size:16px;}
+    .gain h3{font-size:15px;}
+    .gain p{font-size:13px;}
+    .proof{padding:32px 20px;}
+    .proof .big{font-size:44px;}
+    .proof .big small{font-size:18px;}
+    .proof .cap{font-size:12px;}
+    .cta{padding:28px 20px 34px;}
+    .cta .cta-line{font-size:17px;gap:8px;}
+    .cta .cta-line svg,.cta .cta-line img{width:28px;height:28px;}
+  }
 </style>
 </head>
 <body>
@@ -399,10 +449,14 @@
   var stage=document.querySelector('.stage');
   var poster=document.querySelector('.poster');
   function fit(){
+    if(window.innerWidth<768){
+      poster.style.transform='none';
+      stage.style.height='auto';
+      return;
+    }
     var w=Math.min(window.innerWidth,BASE);
     var scale=w/BASE;
     poster.style.transform='scale('+scale+')';
-    // scaleは見た目だけ縮むためレイアウト高さを実寸に合わせて補正する
     stage.style.height=(poster.offsetHeight*scale)+'px';
   }
   window.addEventListener('resize',fit);
