@@ -14,7 +14,8 @@
     --blue:#1f5d99;       /* 強調用の紺青 */
     --tint:#f2f4f6;       /* 中立グレー: 区切り・パネル用(白に馴染む) */
     --dim:#5c6b7d;        /* 補足テキスト */
-    --rule:#d7dfe8;       /* 罫線 */
+    --rule:#d7dfe8;
+    --accent:#c43a18;     /* 赤橙アクセント(対白5.30:1) */
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   body{background:#e9edf2;display:flex;justify-content:center;}
@@ -49,9 +50,18 @@
   /* ---------- 課題: 実際のメッセージ ---------- */
   .chaos{padding:36px 48px 8px;}
   .sec-label{
-    font-size:14px;font-weight:700;letter-spacing:.22em;
-    color:var(--dim);margin-bottom:18px;
+    display:inline-block;
+    font-size:11px;font-weight:700;letter-spacing:.24em;
+    color:var(--dim);
+    border:1px solid var(--rule);
+    padding:4px 10px;border-radius:2px;
+    margin-bottom:14px;
   }
+  .concl{
+    font-size:34px;font-weight:900;line-height:1.4;
+    color:var(--navy);margin-bottom:10px;
+  }
+  .concl em{font-style:normal;border-bottom:6px solid var(--blue);}
   .chaos h2{
     font-size:30px;font-weight:900;line-height:1.5;margin-bottom:8px;
     color:var(--navy);
@@ -62,34 +72,51 @@
   }
   .chaos .note{font-size:14px;color:var(--dim);margin-bottom:22px;}
 
-  .bubbles{display:flex;flex-direction:column;gap:14px;}
-  .bubble{
-    max-width:86%;
+  .diffs{display:flex;flex-direction:column;gap:26px;}
+  .diff .dtitle{
+    display:flex;align-items:center;gap:10px;
+    font-size:18px;font-weight:900;color:var(--navy);
+    margin-bottom:10px;
+  }
+  .diff .dnum{
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:40px;font-weight:700;line-height:1;
+    color:var(--rule);
+  }
+  .diff .chips{display:flex;gap:10px;}
+  .diff .chip{
+    flex:1;min-width:0;
     background:var(--tint);
-    border-radius:4px 16px 16px 16px;
-    padding:16px 18px 14px;
-    border-left:3px solid var(--navy);
-  }
-  .bubble .who{font-size:12px;color:var(--dim);margin-bottom:6px;letter-spacing:.08em;font-weight:700;}
-  .bubble .msg{
-    font-size:17px;line-height:1.65;font-weight:500;
-    white-space:pre-line;color:var(--navy);
-  }
-  .bubble .msg mark{
-    background:none;color:var(--blue);font-weight:700;
-  }
-  .bubble .msg .aside{color:var(--dim);font-size:14px;}
-  .bubble:nth-child(even){align-self:flex-end;border-radius:16px 4px 16px 16px;}
-
-  .chaos .verdict{
-    margin:26px 0 0;
+    border:1px solid var(--rule);
+    border-radius:6px;
+    padding:12px 10px 11px;
     text-align:center;
-    font-size:22px;font-weight:900;line-height:1.7;
-    color:var(--navy);
+    font-size:15px;font-weight:700;color:var(--blue);
+    line-height:1.5;
   }
-  .chaos .verdict span{
-    color:var(--paper);background:var(--accent);
-    padding:2px 10px;
+  .diff .chip .person{
+    display:flex;flex-direction:column;align-items:center;gap:6px;
+    margin-bottom:12px;
+    font-size:16px;font-weight:900;color:var(--navy);letter-spacing:.06em;
+  }
+  .diff .chip .person svg{width:104px;height:104px;fill:var(--navy);}
+  .diff .chip small{
+    display:block;font-size:11px;font-weight:500;color:var(--dim);margin-top:4px;
+  }
+  .diff .issue{
+    margin-top:12px;
+    font-size:12.5px;line-height:1.6;
+    font-weight:700;color:var(--navy);
+    padding:10px 14px;
+    background:#faf1ee;
+    border-left:5px solid var(--accent);
+    border-radius:0 6px 6px 0;
+    white-space:nowrap;overflow:hidden;
+  }
+  .diff .issue strong{color:var(--accent);}
+
+  @media (max-width:749px){
+    .diff .issue{white-space:normal;}
   }
 
   /* ---------- 流量の数字 ---------- */
@@ -100,10 +127,16 @@
     display:flex;justify-content:space-around;text-align:center;
   }
   .volume .v .big{
-    font-size:64px;font-weight:700;color:var(--navy);line-height:1;
+    font-size:76px;font-weight:700;color:var(--navy);line-height:1;
   }
   .volume .v .big small{font-size:26px;color:var(--dim);font-weight:600;margin-left:2px;}
   .volume .v .cap{font-size:14px;color:var(--dim);margin-top:8px;line-height:1.5;}
+  .volume-issue{
+    margin:0 48px 8px;
+    text-align:center;
+    font-size:19px;font-weight:900;line-height:1.8;color:var(--navy);
+  }
+  .volume-issue strong{color:var(--accent);}
 
   /* ---------- 変換の矢印 ---------- */
   .turn{text-align:center;padding:8px 0 0;}
@@ -142,28 +175,50 @@
     display:inline-block;font-size:11px;font-weight:700;
     padding:2px 8px;border-radius:20px;background:var(--tint);color:#33465c;
   }
-  .sheet .best td{background:#e8f0f9;}
-  .sheet .best .tag{background:var(--accent);color:#fff;}
 
   .solve .caption{
     font-size:13px;color:#4a5f76;margin-top:12px;text-align:right;
   }
 
   /* ---------- 3つの成果 ---------- */
-  .gains{padding:8px 48px 40px;background:var(--tint);color:var(--navy);}
-  .gain{
-    display:flex;gap:18px;align-items:flex-start;
-    padding:20px 0;border-top:1px solid #c9d5e1;
+  .gains{
+    padding:8px 48px 44px;background:var(--tint);color:var(--navy);
+    display:flex;flex-direction:column;gap:14px;
   }
-  .gain:first-child{border-top:none;}
+  .gains .sec-label{color:#4a5f76;margin-bottom:4px;}
+  .gain{
+    display:flex;gap:22px;align-items:center;
+    background:#fff;
+    border:1px solid var(--rule);
+    border-radius:10px;
+    padding:22px 24px;
+    box-shadow:0 4px 18px rgba(14,42,71,.06);
+  }
   .gain .mark{
-    flex:none;width:44px;height:44px;border-radius:4px;
+    flex:none;width:76px;height:76px;border-radius:10px;
     background:var(--navy);color:#fff;
     display:flex;align-items:center;justify-content:center;
-    font-size:22px;font-weight:700;
+    font-size:40px;font-weight:900;
   }
-  .gain h3{font-size:19px;font-weight:900;margin-bottom:4px;}
-  .gain p{font-size:15px;line-height:1.75;color:#33465c;}
+  .gain .gbody{min-width:0;}
+  .gain .stat{
+    display:flex;align-items:baseline;gap:10px;
+    font-family:'Barlow Condensed',sans-serif;
+    white-space:nowrap;line-height:1;
+    margin-bottom:8px;
+  }
+  .gain .stat .before{
+    font-size:28px;font-weight:600;color:var(--dim);
+  }
+  .gain .stat .garrow{
+    font-size:22px;color:var(--dim);
+  }
+  .gain .stat .after{
+    font-size:50px;font-weight:700;color:var(--navy);
+  }
+  .gain .stat small{font-size:.55em;font-weight:600;margin-left:1px;}
+  .gain h3{font-size:18px;font-weight:900;margin-bottom:3px;}
+  .gain p{font-size:14px;line-height:1.7;color:#33465c;}
 
   /* ---------- 実績 ---------- */
   .proof{
@@ -181,14 +236,18 @@
     background:var(--navy);color:#fff;
     padding:40px 48px 48px;text-align:center;
   }
-  .cta h2{font-size:28px;font-weight:900;line-height:1.6;}
-  .cta p{font-size:16px;font-weight:700;margin-top:10px;line-height:1.7;color:#d7e2ee;}
-  .cta .btn{
-    display:inline-block;margin-top:22px;
-    background:#fff;color:var(--navy);
-    font-size:18px;font-weight:900;letter-spacing:.06em;
-    padding:16px 44px;border-radius:40px;
+  .cta .cta-label{
+    font-size:20px;font-weight:900;letter-spacing:.14em;
   }
+  .cta .cta-arrow{
+    font-size:22px;color:#9db1c7;margin:10px 0 14px;line-height:1;
+  }
+  .cta .cta-line{
+    display:flex;align-items:center;justify-content:center;gap:12px;
+    font-size:26px;font-weight:900;line-height:1.5;
+  }
+  .cta .cta-line svg{width:40px;height:40px;fill:#fff;flex:none;}
+  .cta .cta-line img{width:40px;height:40px;flex:none;}
 </style>
 </head>
 <body>
@@ -196,55 +255,68 @@
 
   <!-- HERO -->
   <div class="hero">
-    <div class="eyebrow">TCG 仕入れ担当の方へ</div>
-    <h1>LINEの在庫情報が、<br>比較できる<span class="mute">「1枚のリスト」</span>に<br>なります。</h1>
-    <p class="sub">流れてくるメッセージを自動で解析・整理。あなたのスプレッドシートに、そのまま届きます。</p>
+    <div class="eyebrow">在庫自動集計システム</div>
+    <h1>日々の在庫情報を<br><span class="mute">1枚のリスト</span>に</h1>
+    <p class="sub">メッセージを自動で解析・整理。あなたのスプレッドシートに、そのまま届きます。</p>
   </div>
 
   <!-- 課題 -->
   <div class="chaos">
-    <div class="sec-label">PROBLEM ── いま起きていること</div>
-    <h2>同じ商品でも、<br>書き方は<em>全員バラバラ。</em></h2>
-    <div class="note">※ 実際のグループに流れたメッセージの形式（店名は伏せています）</div>
+    <div class="sec-label">PROBLEM</div>
+    <div class="concl">在庫の確認に、<em>時間がかかる。</em></div>
+    <div style="font-size:16px;font-weight:700;color:#33465c;line-height:1.7;margin-bottom:6px;">原因は、書き方が全員バラバラなこと。</div>
+    <div class="note">メッセージの例</div>
 
-    <div class="bubbles">
-      <div class="bubble">
-        <div class="who">A社</div>
-        <div class="msg">■拡張パック「ストームエメラルダ」
-<mark>200BOX@23,500円</mark>[通常品]</div>
+    <div class="diffs">
+
+      <div class="diff">
+        <div class="dtitle"><span class="dnum">01</span>状態の書き方の違い</div>
+        <div class="chips">
+          <div class="chip"><span class="person"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="4.2"/><path d="M3.5 21c0-4.4 3.9-7 8.5-7s8.5 2.6 8.5 7z"/></svg>Aさん</span>通常品</div>
+          <div class="chip"><span class="person"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="4.2"/><path d="M3.5 21c0-4.4 3.9-7 8.5-7s8.5 2.6 8.5 7z"/></svg>Bさん</span>シュリあり</div>
+          <div class="chip"><span class="person"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="4.2"/><path d="M3.5 21c0-4.4 3.9-7 8.5-7s8.5 2.6 8.5 7z"/></svg>Cさん</span>（記載なし）</div>
+        </div>
+        <div class="issue">同じ「シュリンク付き」でも表記が人によって違う。<strong>結局、全メッセージを目視でチェック</strong>することになる。</div>
       </div>
-      <div class="bubble">
-        <div class="who">B社</div>
-        <div class="msg">◆ストームエメラルダ（シュリあり）
-<mark>8個＠20400円</mark></div>
+
+      <div class="diff">
+        <div class="dtitle"><span class="dnum">02</span>商品名の書き方の違い</div>
+        <div class="chips">
+          <div class="chip"><span class="person"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="4.2"/><path d="M3.5 21c0-4.4 3.9-7 8.5-7s8.5 2.6 8.5 7z"/></svg>Aさん</span>OP-15 神の島の冒険<small>型番＋商品名</small></div>
+          <div class="chip"><span class="person"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="4.2"/><path d="M3.5 21c0-4.4 3.9-7 8.5-7s8.5 2.6 8.5 7z"/></svg>Bさん</span>OP-15<small>型番のみ</small></div>
+          <div class="chip"><span class="person"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="4.2"/><path d="M3.5 21c0-4.4 3.9-7 8.5-7s8.5 2.6 8.5 7z"/></svg>Cさん</span>神の島の冒険<small>商品名のみ</small></div>
+        </div>
+        <div class="issue">検索の仕方しだいで取りこぼしが出る。<strong>正確に拾うには型番と商品名の2回検索</strong>で、手間が倍になる。</div>
       </div>
-      <div class="bubble">
-        <div class="who">C社</div>
-        <div class="msg">▪️ストームエメラルダ シュリ有
-<mark>22,000円　数量50</mark></div>
+
+      <div class="diff">
+        <div class="dtitle"><span class="dnum">03</span>単位の書き方の違い</div>
+        <div class="chips">
+          <div class="chip"><span class="person"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="4.2"/><path d="M3.5 21c0-4.4 3.9-7 8.5-7s8.5 2.6 8.5 7z"/></svg>Aさん</span>200BOX@23,500円<small>BOX単価</small></div>
+          <div class="chip"><span class="person"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="4.2"/><path d="M3.5 21c0-4.4 3.9-7 8.5-7s8.5 2.6 8.5 7z"/></svg>Bさん</span>8個＠20400円<small>「個」表記</small></div>
+          <div class="chip"><span class="person"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="4.2"/><path d="M3.5 21c0-4.4 3.9-7 8.5-7s8.5 2.6 8.5 7z"/></svg>Cさん</span>180,000円 在庫4<small>実はカートン価格</small></div>
+        </div>
+        <div class="issue">BOX価格とカートン価格が同じ画面に並ぶ。<strong>結局ひとつずつ目視で確かめる手間</strong>が残る。</div>
       </div>
-      <div class="bubble">
-        <div class="who">D社</div>
-        <div class="msg">OP-15 神の島の冒険
-<mark>180,000円 在庫4</mark>
-<span class="aside">← これはカートン価格。BOXと見間違えたら…</span></div>
-      </div>
+
     </div>
 
-    <div class="verdict">この状態で、<span>最安値を見つけられますか？</span></div>
   </div>
 
   <!-- 流量 -->
+  <div style="text-align:center;margin:34px 48px 0;font-size:13px;font-weight:700;letter-spacing:.18em;color:var(--dim);">1日に届くメッセージ</div>
   <div class="volume">
     <div class="v">
-      <div class="big num">90<small>通/日</small></div>
-      <div class="cap">1グループの平均流量<br>（20日間・約1,800通を実測）</div>
+      <div class="big num"><small>約</small>70<small>通/日</small></div>
+      <div class="cap">1グループの平均流量<br>（20日間・約1,400通を実測）</div>
     </div>
     <div class="v">
-      <div class="big num">200<small>名</small></div>
+      <div class="big num"><small>約</small>115<small>名</small></div>
       <div class="cap">1グループ内の発言者数<br>全員の書式が異なります</div>
     </div>
   </div>
+
+  <div class="volume-issue">この中から希望の商品を探し出すだけで、時間と労力が消える。<br><strong>本来「営業」に使うべき時間が、在庫チェックに奪われていく。</strong></div>
 
   <div class="turn">
     <div class="arrow">▼</div>
@@ -253,17 +325,17 @@
 
   <!-- 解決 -->
   <div class="solve">
-    <div class="sec-label">SOLUTION ── ご提供するもの</div>
-    <h2>解析済みリストを、<br><em>あなたのシートに自動配信。</em></h2>
-    <p class="lead">AIがメッセージを解析し、商品名・価格・数量・単位・状態を統一して整理。あなた側の作業はゼロ。開けば、いつでも比較できる状態になっています。</p>
+    <div class="sec-label">SOLUTION</div>
+    <div class="concl">AIが整理して、<em>リストで届く。</em></div>
+    <p class="lead">バラバラの書き方をAIが解析し、商品名と状態を統一してリスト化。目視のチェックも、手入力の転記も不要。あなたのスプレッドシートに、整理済みの状態で届きます。</p>
 
     <div class="sheet">
       <table>
-        <tr><th>商品名</th><th>単価</th><th>数量</th><th>単位</th><th>状態</th></tr>
-        <tr class="best"><td>ストームエメラルダ</td><td class="n">¥20,400</td><td class="n">8</td><td>BOX</td><td><span class="tag">最安</span></td></tr>
-        <tr><td>ストームエメラルダ</td><td class="n">¥22,000</td><td class="n">50</td><td>BOX</td><td><span class="tag">シュリ有</span></td></tr>
-        <tr><td>ストームエメラルダ</td><td class="n">¥23,500</td><td class="n">200</td><td>BOX</td><td><span class="tag">通常品</span></td></tr>
-        <tr><td>神の島の冒険</td><td class="n">¥180,000</td><td class="n">4</td><td>カートン</td><td><span class="tag">単位判定済</span></td></tr>
+        <tr><th>商品名</th><th>状態</th><th>単価</th><th>数量</th></tr>
+        <tr><td>ストームエメラルダ</td><td><span class="tag">シュリンク付き</span></td><td class="n">¥20,400</td><td class="n">8</td></tr>
+        <tr><td>ストームエメラルダ</td><td><span class="tag">シュリンク付き</span></td><td class="n">¥22,000</td><td class="n">50</td></tr>
+        <tr><td>ストームエメラルダ</td><td><span class="tag">シュリンクなし</span></td><td class="n">¥16,800</td><td class="n">30</td></tr>
+        <tr><td>OP-15 神の島の冒険</td><td><span class="tag">シュリンク付き</span></td><td class="n">¥16,500</td><td class="n">8</td></tr>
       </table>
     </div>
     <div class="caption">Webアプリでの検索・絞り込み表示にも対応</div>
@@ -271,47 +343,55 @@
 
   <!-- 成果 -->
   <div class="gains">
+    <div><div class="sec-label">RESULT</div></div>
+    <div class="concl" style="margin-bottom:2px;">確認ゼロで、<em>営業に集中できる。</em></div>
     <div class="gain">
       <div class="mark">読</div>
-      <div>
+      <div class="gbody">
+        <div class="stat"><span class="before">1日 70<small>通</small></span><span class="garrow">→</span><span class="after">0<small>通</small></span></div>
         <h3>全部読まなくていい</h3>
-        <p>毎日流れる大量のメッセージを追う必要がなくなります。「特定の業者だけ見る」絞り込み運用からの卒業。</p>
+        <p>メッセージを1通ずつ目で確認する手間と時間が、まるごとなくなります。</p>
       </div>
     </div>
     <div class="gain">
       <div class="mark">比</div>
-      <div>
+      <div class="gbody">
+        <div class="stat"><span class="before">180<small>人</small></span><span class="garrow">→</span><span class="after">1<small>画面</small></span></div>
         <h3>横断で価格比較できる</h3>
-        <p>供給元をまたいで同一商品を並べて比較。最安値と在庫数が一目で分かります。</p>
+        <p>提供者全員の在庫を、同じ商品名・同じ状態表記で並べて比較できます。</p>
       </div>
     </div>
     <div class="gain">
       <div class="mark">速</div>
-      <div>
-        <h3>判断が速くなる</h3>
-        <p>「見ている間に売れた」を減らす。単位（BOX/カートン）の読み違いによる発注ミスも防ぎます。</p>
+      <div class="gbody">
+        <div class="stat"><span class="before">検索 2<small>回</small></span><span class="garrow">→</span><span class="after">0<small>回</small></span></div>
+        <h3>在庫状況が瞬時にわかる</h3>
+        <p>開くだけ。どの提供者が、何を、どれだけ持っているかが即わかります。</p>
       </div>
     </div>
   </div>
 
   <!-- 実績 -->
   <div class="proof">
-    <div class="sec-label">TRACK RECORD ── 現在の解析実績</div>
+    <div class="sec-label" style="border-color:#2e4560;color:#9db1c7;margin-bottom:24px;">TRACK RECORD</div>
     <div class="row">
       <div>
-        <div class="big num">180<small>社</small></div>
-        <div class="cap">解析対象の供給元</div>
+        <div class="big num">180<small>人</small></div>
+        <div class="cap">解析成功している提供者の人数</div>
       </div>
       <div>
         <div class="big num">1,500<small>件+</small></div>
         <div class="cap">構造化済みの在庫データ</div>
       </div>
     </div>
+    <div style="margin-top:22px;font-size:13px;color:#9db1c7;">現在の解析実績です。</div>
   </div>
 
   <!-- CTA -->
   <div class="cta">
-    <h2>詳細はLINEにて<br>お問い合わせください。</h2>
+    <div class="cta-label">お問い合わせ</div>
+    <div class="cta-arrow">▼</div>
+    <div class="cta-line"><img src="line-icon.png" alt="LINE" onerror="this.outerHTML='<svg viewBox=&quot;0 0 24 24&quot; style=&quot;width:40px;height:40px;fill:#fff;flex:none&quot;><path d=&quot;M12 3C6.5 3 2 6.6 2 11c0 2.6 1.6 4.9 4 6.4-.1.8-.5 2.2-.6 2.6-.1.5.2.5.5.4.3-.1 2.4-1.4 3.3-2 .9.2 1.8.3 2.8.3 5.5 0 10-3.6 10-8S17.5 3 12 3z&quot;/></svg>'">LINEにてDMをお願いします</div>
   </div>
 
 </div>
