@@ -129,3 +129,32 @@ v3.0 → v5.9 全差分:
 
 - 内容を戻す: `git revert 5692115c170aa480815b5cdd61e784fecc709e66` → push (GEN-RYU-System/inventory-info main)
 - 移管の取消: GEN-RYU-System側から shingo-ops へ再transfer (実行は人間判断)
+
+---
+
+## 2026-08-21 v7 2層レスポンシブ 実施
+
+| 項目 | 値 |
+|------|-----|
+| 実施日時 | 2026-08-21 17:46 JST |
+| リポジトリ | GEN-RYU-System/inventory-info |
+| PR | https://github.com/GEN-RYU-System/inventory-info/pull/5 |
+| merge commit SHA | 1192438796e000382591635c4e10c145098b7adc |
+| index.html SHA256 | 4b2acb5344a4ede25c42f5cc0428d3ecaafdc22220820cae2ba4dd4208fb39f1 |
+| 公開URL | https://gen-ryu-system.github.io/inventory-info/ |
+
+## 変更概要 (v6.1→v7)
+
+- PC（≥768px）: 1080px 金型スケーリング維持
+- スマホ（<768px）: 組み替えレイアウト対応（2層レスポンシブ）
+
+## 検証結果
+
+| 合格条件 | 実測値 | 判定 |
+|----------|--------|------|
+| HTTP 200 | 200（試行2回目 / 約30秒後） | **合格** |
+| SHA256一致 | 4b2acb5344a4ede25c42f5cc0428d3ecaafdc22220820cae2ba4dd4208fb39f1 | **合格** |
+
+## ロールバック手順
+
+`git revert 1192438796e000382591635c4e10c145098b7adc` → push (GEN-RYU-System/inventory-info main)
