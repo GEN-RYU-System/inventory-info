@@ -158,3 +158,31 @@ v3.0 → v5.9 全差分:
 ## ロールバック手順
 
 `git revert 1192438796e000382591635c4e10c145098b7adc` → push (GEN-RYU-System/inventory-info main)
+
+---
+
+## 2026-08-21 v7.3 修正反映
+
+| 項目 | 値 |
+|------|-----|
+| 実施日時 | 2026-08-21 18:53 JST |
+| リポジトリ | GEN-RYU-System/inventory-info |
+| PR | https://github.com/GEN-RYU-System/inventory-info/pull/6 |
+| merge commit SHA | e6d2056a84b8238d4d058a8bdd390d97512ebb6b |
+| index.html SHA256 | d1a62ced8f26ed3dac58dd8fbfc6d56bc7527af8ed825392a5790d829029cd68 |
+| 公開URL | https://gen-ryu-system.github.io/inventory-info/ |
+
+## 変更概要 (v7→v7.3)
+
+v7に対する修正反映
+
+## 検証結果
+
+| 合格条件 | 実測値 | 判定 |
+|----------|--------|------|
+| HTTP 200 | 200（試行2回目 / 約30秒後） | **合格** |
+| SHA256一致 | d1a62ced8f26ed3dac58dd8fbfc6d56bc7527af8ed825392a5790d829029cd68 | **合格** |
+
+## ロールバック手順
+
+`git revert e6d2056a84b8238d4d058a8bdd390d97512ebb6b` → push
