@@ -8,21 +8,20 @@
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#12161c;        /* 地色: 濃紺墨 */
-    --panel:#1b212b;
-    --paper:#f6f7f4;      /* 解決パートの紙色 */
-    --foil:#e8b93c;       /* カード箔の金 */
-    --line:#33c04e;       /* LINE吹き出し */
-    --dim:#8b94a3;
-    --alert:#ff5d5d;
-    --table-line:#d8dcd4;
+    --paper:#ffffff;      /* 地色: 白 */
+    --navy:#0e2a47;       /* 濃紺: 見出し・本文 */
+    --navy-deep:#08192e;  /* さらに濃い紺: 実績・CTA帯 */
+    --blue:#1f5d99;       /* 強調用の紺青 */
+    --tint:#f2f4f6;       /* 中立グレー: 区切り・パネル用(白に馴染む) */
+    --dim:#5c6b7d;        /* 補足テキスト */
+    --rule:#d7dfe8;       /* 罫線 */
   }
   *{margin:0;padding:0;box-sizing:border-box;}
-  body{background:#000;display:flex;justify-content:center;}
+  body{background:#e9edf2;display:flex;justify-content:center;}
   .poster{
     width:750px;max-width:100vw;
-    background:var(--ink);
-    color:#eef1f5;
+    background:var(--paper);
+    color:var(--navy);
     font-family:'Zen Kaku Gothic New',sans-serif;
     overflow:hidden;
   }
@@ -33,18 +32,18 @@
   .hero .eyebrow{
     display:inline-block;
     font-size:15px;font-weight:700;letter-spacing:.18em;
-    color:var(--foil);
-    border:1px solid var(--foil);
-    padding:6px 14px;border-radius:2px;
+    color:var(--paper);
+    background:var(--navy);
+    padding:7px 16px;border-radius:2px;
     margin-bottom:28px;
   }
   .hero h1{
     font-size:52px;font-weight:900;line-height:1.28;
-    letter-spacing:.01em;
+    letter-spacing:.01em;color:var(--navy);
   }
-  .hero h1 .mute{color:var(--dim);}
+  .hero h1 .mute{color:var(--blue);}
   .hero p.sub{
-    margin-top:20px;font-size:19px;line-height:1.8;color:#c4cad4;
+    margin-top:20px;font-size:19px;line-height:1.8;color:#33465c;
   }
 
   /* ---------- 課題: 実際のメッセージ ---------- */
@@ -55,133 +54,138 @@
   }
   .chaos h2{
     font-size:30px;font-weight:900;line-height:1.5;margin-bottom:8px;
+    color:var(--navy);
   }
-  .chaos h2 em{font-style:normal;color:var(--alert);}
+  .chaos h2 em{
+    font-style:normal;color:var(--blue);
+    border-bottom:5px solid var(--blue);
+  }
   .chaos .note{font-size:14px;color:var(--dim);margin-bottom:22px;}
 
   .bubbles{display:flex;flex-direction:column;gap:14px;}
   .bubble{
     max-width:86%;
-    background:var(--panel);
+    background:var(--tint);
     border-radius:4px 16px 16px 16px;
     padding:16px 18px 14px;
-    border-left:3px solid var(--line);
+    border-left:3px solid var(--navy);
   }
-  .bubble .who{font-size:12px;color:var(--dim);margin-bottom:6px;letter-spacing:.08em;}
+  .bubble .who{font-size:12px;color:var(--dim);margin-bottom:6px;letter-spacing:.08em;font-weight:700;}
   .bubble .msg{
     font-size:17px;line-height:1.65;font-weight:500;
-    white-space:pre-line;
+    white-space:pre-line;color:var(--navy);
   }
   .bubble .msg mark{
-    background:none;color:var(--foil);font-weight:700;
+    background:none;color:var(--blue);font-weight:700;
   }
+  .bubble .msg .aside{color:var(--dim);font-size:14px;}
   .bubble:nth-child(even){align-self:flex-end;border-radius:16px 4px 16px 16px;}
 
   .chaos .verdict{
     margin:26px 0 0;
     text-align:center;
     font-size:22px;font-weight:900;line-height:1.7;
+    color:var(--navy);
   }
-  .chaos .verdict span{color:var(--alert);}
+  .chaos .verdict span{
+    color:var(--paper);background:var(--accent);
+    padding:2px 10px;
+  }
 
   /* ---------- 流量の数字 ---------- */
   .volume{
     margin:36px 48px;
-    border-top:1px solid #2a323e;border-bottom:1px solid #2a323e;
+    border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
     padding:28px 0;
     display:flex;justify-content:space-around;text-align:center;
   }
   .volume .v .big{
-    font-size:64px;font-weight:700;color:#fff;line-height:1;
+    font-size:64px;font-weight:700;color:var(--navy);line-height:1;
   }
   .volume .v .big small{font-size:26px;color:var(--dim);font-weight:600;margin-left:2px;}
   .volume .v .cap{font-size:14px;color:var(--dim);margin-top:8px;line-height:1.5;}
 
   /* ---------- 変換の矢印 ---------- */
-  .turn{
-    text-align:center;padding:8px 0 0;
-  }
-  .turn .arrow{
-    font-size:34px;color:var(--foil);line-height:1;
-  }
+  .turn{text-align:center;padding:8px 0 0;}
+  .turn .arrow{font-size:34px;color:var(--navy);line-height:1;}
   .turn .word{
-    font-size:17px;font-weight:700;color:var(--foil);
+    font-size:17px;font-weight:700;color:var(--navy);
     letter-spacing:.14em;margin-top:6px;padding-bottom:28px;
   }
 
-  /* ---------- 解決: 紙色パート ---------- */
+  /* ---------- 解決 ---------- */
   .solve{
-    background:var(--paper);color:var(--ink);
+    background:var(--tint);color:var(--navy);
     padding:48px 48px 40px;
   }
-  .solve .sec-label{color:#7a8272;}
+  .solve .sec-label{color:#4a5f76;}
   .solve h2{font-size:30px;font-weight:900;line-height:1.5;margin-bottom:10px;}
-  .solve h2 em{font-style:normal;border-bottom:6px solid var(--foil);}
-  .solve p.lead{font-size:17px;line-height:1.8;color:#3c4450;margin-bottom:26px;}
+  .solve h2 em{font-style:normal;border-bottom:6px solid var(--navy);}
+  .solve p.lead{font-size:17px;line-height:1.8;color:#33465c;margin-bottom:26px;}
 
   .sheet{
-    background:#fff;border:1px solid var(--table-line);
+    background:#fff;border:1px solid var(--rule);
     border-radius:6px;overflow:hidden;
-    box-shadow:0 8px 30px rgba(0,0,0,.10);
+    box-shadow:0 8px 30px rgba(14,42,71,.10);
   }
   .sheet table{width:100%;border-collapse:collapse;font-size:15px;}
   .sheet th{
-    background:#eef0ea;font-size:12px;letter-spacing:.1em;
-    color:#5a6252;padding:10px 12px;text-align:left;font-weight:700;
+    background:var(--navy);font-size:12px;letter-spacing:.1em;
+    color:#fff;padding:10px 12px;text-align:left;font-weight:700;
   }
   .sheet td{
-    padding:11px 12px;border-top:1px solid var(--table-line);
-    font-weight:500;
+    padding:11px 12px;border-top:1px solid var(--rule);
+    font-weight:500;color:var(--navy);
   }
   .sheet td.n{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;}
   .sheet .tag{
     display:inline-block;font-size:11px;font-weight:700;
-    padding:2px 8px;border-radius:20px;background:#eef0ea;color:#5a6252;
+    padding:2px 8px;border-radius:20px;background:var(--tint);color:#33465c;
   }
-  .sheet .best td{background:#fdf6e0;}
-  .sheet .best .tag{background:var(--foil);color:#1b1200;}
+  .sheet .best td{background:#e8f0f9;}
+  .sheet .best .tag{background:var(--accent);color:#fff;}
 
   .solve .caption{
-    font-size:13px;color:#7a8272;margin-top:12px;text-align:right;
+    font-size:13px;color:#4a5f76;margin-top:12px;text-align:right;
   }
 
   /* ---------- 3つの成果 ---------- */
-  .gains{padding:8px 48px 40px;background:var(--paper);color:var(--ink);}
+  .gains{padding:8px 48px 40px;background:var(--tint);color:var(--navy);}
   .gain{
     display:flex;gap:18px;align-items:flex-start;
-    padding:20px 0;border-top:1px solid #e0e3da;
+    padding:20px 0;border-top:1px solid #c9d5e1;
   }
   .gain:first-child{border-top:none;}
   .gain .mark{
     flex:none;width:44px;height:44px;border-radius:4px;
-    background:var(--ink);color:var(--foil);
+    background:var(--navy);color:#fff;
     display:flex;align-items:center;justify-content:center;
     font-size:22px;font-weight:700;
   }
   .gain h3{font-size:19px;font-weight:900;margin-bottom:4px;}
-  .gain p{font-size:15px;line-height:1.75;color:#3c4450;}
+  .gain p{font-size:15px;line-height:1.75;color:#33465c;}
 
   /* ---------- 実績 ---------- */
   .proof{
-    background:var(--ink);padding:44px 48px;
-    text-align:center;
+    background:var(--navy-deep);padding:44px 48px;
+    text-align:center;color:#fff;
   }
-  .proof .sec-label{margin-bottom:24px;}
+  .proof .sec-label{margin-bottom:24px;color:#9db1c7;}
   .proof .row{display:flex;justify-content:space-around;}
-  .proof .big{font-size:72px;font-weight:700;color:var(--foil);line-height:1;}
-  .proof .big small{font-size:28px;color:#eef1f5;font-weight:600;}
-  .proof .cap{font-size:14px;color:var(--dim);margin-top:10px;line-height:1.6;}
+  .proof .big{font-size:72px;font-weight:700;color:#fff;line-height:1;}
+  .proof .big small{font-size:28px;color:#9db1c7;font-weight:600;}
+  .proof .cap{font-size:14px;color:#9db1c7;margin-top:10px;line-height:1.6;}
 
   /* ---------- CTA ---------- */
   .cta{
-    background:var(--foil);color:#1b1200;
+    background:var(--navy);color:#fff;
     padding:40px 48px 48px;text-align:center;
   }
   .cta h2{font-size:28px;font-weight:900;line-height:1.6;}
-  .cta p{font-size:16px;font-weight:700;margin-top:10px;line-height:1.7;}
+  .cta p{font-size:16px;font-weight:700;margin-top:10px;line-height:1.7;color:#d7e2ee;}
   .cta .btn{
     display:inline-block;margin-top:22px;
-    background:#1b1200;color:var(--foil);
+    background:#fff;color:var(--navy);
     font-size:18px;font-weight:900;letter-spacing:.06em;
     padding:16px 44px;border-radius:40px;
   }
@@ -223,7 +227,7 @@
         <div class="who">D社</div>
         <div class="msg">OP-15 神の島の冒険
 <mark>180,000円 在庫4</mark>
-<span style="color:#8b94a3;font-size:14px;">← これはカートン価格。BOXと見間違えたら…</span></div>
+<span class="aside">← これはカートン価格。BOXと見間違えたら…</span></div>
       </div>
     </div>
 
@@ -307,9 +311,7 @@
 
   <!-- CTA -->
   <div class="cta">
-    <h2>実際のリストを<br>お見せできます。</h2>
-    <p>ご興味のある方は<br>個別メッセージでご連絡ください。</p>
-    <div class="btn">個別LINEで問い合わせる</div>
+    <h2>詳細はLINEにて<br>お問い合わせください。</h2>
   </div>
 
 </div>
