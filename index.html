@@ -249,15 +249,18 @@
   .cta .cta-line svg{width:40px;height:40px;fill:#fff;flex:none;}
   .cta .cta-line img{width:40px;height:40px;flex:none;}
 
+  .brm{display:none;}
+
   /* ===== モバイル層(768px未満): 縮小ではなく組み替え ===== */
   @media (max-width:767px){
+    .brm{display:inline;}
     .stage{width:100vw;}
     .poster{width:100%;}
     .hero{padding:36px 20px 28px;}
     .hero h1{font-size:34px;}
     .hero p.sub{font-size:15px;margin-top:14px;}
     .chaos{padding:28px 20px 8px;}
-    .concl{font-size:24px;}
+    .concl{font-size:20px;white-space:nowrap;}
     .diff .dnum{font-size:30px;}
     .diff .dtitle{font-size:16px;}
     .diff .chips{flex-direction:column;gap:8px;}
@@ -307,7 +310,7 @@
   <div class="hero">
     <div class="eyebrow">在庫自動集計システム</div>
     <h1>日々の在庫情報を<br><span class="mute">1枚のリスト</span>に</h1>
-    <p class="sub">メッセージを自動で解析・整理。あなたのスプレッドシートに、そのまま届きます。</p>
+    <p class="sub">メッセージを自動で解析・整理。<br class="brm">あなたのスプレッドシートに、そのまま届きます。</p>
   </div>
 
   <!-- 課題 -->
@@ -326,7 +329,7 @@
           <div class="chip"><span class="person"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="4.2"/><path d="M3.5 21c0-4.4 3.9-7 8.5-7s8.5 2.6 8.5 7z"/></svg>Bさん</span>シュリあり</div>
           <div class="chip"><span class="person"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="4.2"/><path d="M3.5 21c0-4.4 3.9-7 8.5-7s8.5 2.6 8.5 7z"/></svg>Cさん</span>（記載なし）</div>
         </div>
-        <div class="issue">同じ「シュリンク付き」でも表記が人によって違う。<strong>結局、全メッセージを目視でチェック</strong>することになる。</div>
+        <div class="issue">同じ「シュリンク付き」でも表記が人によって違う。<br class="brm"><strong>結局、全メッセージを目視でチェック</strong>することになる。</div>
       </div>
 
       <div class="diff">
@@ -336,7 +339,7 @@
           <div class="chip"><span class="person"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="4.2"/><path d="M3.5 21c0-4.4 3.9-7 8.5-7s8.5 2.6 8.5 7z"/></svg>Bさん</span>OP-15<small>型番のみ</small></div>
           <div class="chip"><span class="person"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="4.2"/><path d="M3.5 21c0-4.4 3.9-7 8.5-7s8.5 2.6 8.5 7z"/></svg>Cさん</span>神の島の冒険<small>商品名のみ</small></div>
         </div>
-        <div class="issue">検索の仕方しだいで取りこぼしが出る。<strong>正確に拾うには型番と商品名の2回検索</strong>で、手間が倍になる。</div>
+        <div class="issue">検索の仕方しだいで取りこぼしが出る。<br class="brm"><strong>正確に拾うには型番と商品名の2回検索</strong>で、手間が倍になる。</div>
       </div>
 
       <div class="diff">
@@ -346,7 +349,7 @@
           <div class="chip"><span class="person"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="4.2"/><path d="M3.5 21c0-4.4 3.9-7 8.5-7s8.5 2.6 8.5 7z"/></svg>Bさん</span>8個＠20400円<small>「個」表記</small></div>
           <div class="chip"><span class="person"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="4.2"/><path d="M3.5 21c0-4.4 3.9-7 8.5-7s8.5 2.6 8.5 7z"/></svg>Cさん</span>180,000円 在庫4<small>実はカートン価格</small></div>
         </div>
-        <div class="issue">BOX価格とカートン価格が同じ画面に並ぶ。<strong>結局ひとつずつ目視で確かめる手間</strong>が残る。</div>
+        <div class="issue">BOX価格とカートン価格が同じ画面に並ぶ。<br class="brm"><strong>結局ひとつずつ目視で確かめる手間</strong>が残る。</div>
       </div>
 
     </div>
