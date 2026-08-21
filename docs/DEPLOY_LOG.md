@@ -49,3 +49,42 @@
 ## ロールバック手順
 
 `git revert aff6563ac317e0a5e28d2e238f06cb82d551bc59` → push（前versionに即復帰）
+
+---
+
+## 2026-08-21 v5.9最終版公開 実施
+
+| 項目 | 値 |
+|------|-----|
+| 実施日時 | 2026-08-21 17:15 JST |
+| 公開URL | https://shingo-ops.github.io/inventory-info/ |
+| merge commit SHA | d8bea133a067e6c9de78d87b2a451c5eac91ed74 |
+| PR | https://github.com/shingo-ops/inventory-info/pull/3 |
+| index.html SHA256 | 2213dee31a379065f6fe44cdfa2e30472858d3df425e71f8497f076662d5adfe |
+| LINE公式アイコン | line-icon.png 同梱（PNG 1001×1000 RGBA） |
+
+## 変更概要
+
+v3.0 → v5.9 全差分:
+- accent定義バグ修正（--accent:#c43a18 定義1箇所・var(--accent) 3箇所使用）
+- 結論ファースト見出しに改訂
+- 水平比較01-03 + 人物アイコン追加
+- 問題文の強調ボックス化
+- 数字リザルト Before→After 白カード化
+- CTAをLINE DM誘導に変更
+- 掲載数字をエビデンス確定値に修正: 約70通/日・約115名・約1,400通
+  （根拠: 通知行412件除外の厳密計測 = 1,385通/20日 = 69.2通・発言者116名）
+- LINE公式アイコン（line-icon.png）同梱
+
+## 検証結果
+
+| 合格条件 | 実測値 | 判定 |
+|----------|--------|------|
+| A: HTTP 200 | 200（試行2回目 / 約30秒後） | **合格** |
+| B: SHA256一致 | 2213dee31a379065f6fe44cdfa2e30472858d3df425e71f8497f076662d5adfe | **合格** |
+| C: --accent:#c43a18 存在 | 1箇所（grep実測） | **合格** |
+| D: line-icon.png HTTP 200 | 200 | **合格** |
+
+## ロールバック手順
+
+`git revert d8bea133a067e6c9de78d87b2a451c5eac91ed74` → push
