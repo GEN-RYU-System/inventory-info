@@ -186,3 +186,30 @@ v7に対する修正反映
 ## ロールバック手順
 
 `git revert e6d2056a84b8238d4d058a8bdd390d97512ebb6b` → push
+
+---
+
+## 2026-08-21 v7.4 修正反映
+
+| 項目 | 値 |
+|------|-----|
+| 実施日時 | 2026-08-21 19:11 JST |
+| PR | https://github.com/GEN-RYU-System/inventory-info/pull/7 |
+| merge commit SHA | cf1685ccd891d957cd869f0a0ae3859be5d9c274 |
+| index.html SHA256 | 5f7b673fe4546bee211277f627821b97ccafefe2a21b66f5c70ef955afae1ff2 |
+| 公開URL | https://gen-ryu-system.github.io/inventory-info/ |
+
+## 変更概要 (v7.3→v7.4)
+
+v7.3に対する修正反映
+
+## 検証結果
+
+| 合格条件 | 実測値 | 判定 |
+|----------|--------|------|
+| HTTP 200 | 200（試行2回目 / 約30秒後） | **合格** |
+| SHA256一致 | 5f7b673fe4546bee211277f627821b97ccafefe2a21b66f5c70ef955afae1ff2 | **合格** |
+
+## ロールバック手順
+
+`git revert cf1685ccd891d957cd869f0a0ae3859be5d9c274` → push
