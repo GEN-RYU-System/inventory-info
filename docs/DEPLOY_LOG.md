@@ -88,3 +88,44 @@ v3.0 → v5.9 全差分:
 ## ロールバック手順
 
 `git revert d8bea133a067e6c9de78d87b2a451c5eac91ed74` → push
+
+---
+
+## 2026-08-21 v6.1公開反映 + GEN-RYU-System移管 実施
+
+| 項目 | 値 |
+|------|-----|
+| 実施日時 | 2026-08-21 17:28–17:34 JST |
+| フェーズ1 PR | https://github.com/shingo-ops/inventory-info/pull/4 |
+| v6.1 merge commit SHA | 5692115c170aa480815b5cdd61e784fecc709e66 |
+| index.html SHA256 | eba840417193ab7ec18883240cfcbf2958c91fa0481d35d33d2d799cf3be5640 |
+| 移管前 owner | shingo-ops |
+| 移管後 owner | GEN-RYU-System |
+| 旧公開URL | https://shingo-ops.github.io/inventory-info/ (リダイレクト有・GitHubポリシー依存) |
+| 新公開URL | https://gen-ryu-system.github.io/inventory-info/ |
+
+## 変更概要 (v5.9→v6.1)
+
+- 幅 750px → 1080px 化
+- 金型スケーリング導入: BASE=1080px 原寸を transform:scale で全画面幅に同一比率適用
+- スマホ折返しフォールバック撤去
+
+## フェーズ1検証結果 (旧URL)
+
+| 合格条件 | 実測値 | 判定 |
+|----------|--------|------|
+| HTTP 200 | 200（試行2回目 / 約30秒後） | **合格** |
+| SHA256一致 | eba840417193ab7ec18883240cfcbf2958c91fa0481d35d33d2d799cf3be5640 | **合格** |
+
+## フェーズ2検証結果 (新URL)
+
+| 合格条件 | 実測値 | 判定 |
+|----------|--------|------|
+| A: HTTP 200 | 200（試行1回目） | **合格** |
+| B: SHA256一致 | eba840417193ab7ec18883240cfcbf2958c91fa0481d35d33d2d799cf3be5640 | **合格** |
+| C: line-icon.png HTTP 200 | 200 | **合格** |
+
+## ロールバック手順
+
+- 内容を戻す: `git revert 5692115c170aa480815b5cdd61e784fecc709e66` → push (GEN-RYU-System/inventory-info main)
+- 移管の取消: GEN-RYU-System側から shingo-ops へ再transfer (実行は人間判断)
